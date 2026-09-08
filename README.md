@@ -17,7 +17,7 @@ You press it. It does nothing helpful. It does plenty of everything else. 😌
 [![License](https://img.shields.io/badge/license-MIT-3da639)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4)](#-contributing)
 
-[Report a Bug](https://github.com/blankcode-alt/the-chaos-button/issues) 🐛 · [Request a Feature](https://github.com/blankcode-alt/the-chaos-button/issues) 🎁
+**[Live Demo](https://the-chaos-button.vercel.app/)** 👁️ · [Report a Bug](https://github.com/blankcode-alt/the-chaos-button/issues) 🐛 · [Request a Feature](https://github.com/blankcode-alt/the-chaos-button/issues) 🎁
 
 *If this repository wasted your time productively, consider leaving a star ⭐. The button counts everything else anyway.*
 
