@@ -216,3 +216,4 @@ const GHX_CSS = `
   .ghx-star, .ghx-mark, .ghx-count { transition: none; animation: none; }
   .ghx-star:hover { transform: none; }
 }
+`
