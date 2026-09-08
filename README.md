@@ -1,3 +1,5 @@
+<img width="1486" height="745" alt="Screenshot 2026-09-08 at 21 45 34" src="https://github.com/user-attachments/assets/48392de4-8438-4d99-8026-2f1ad8b4210f" />
+
 <div align="center">
 
 # 🔴 The Chaos Button
@@ -15,7 +17,7 @@ You press it. It does nothing helpful. It does plenty of everything else. 😌
 [![License](https://img.shields.io/badge/license-MIT-3da639)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4)](#-contributing)
 
-**[Live Demo](https://github.com/blankcode-alt/the-chaos-button#readme)** 👁️ · [Report a Bug](https://github.com/blankcode-alt/the-chaos-button/issues) 🐛 · [Request a Feature](https://github.com/blankcode-alt/the-chaos-button/issues) 🎁
+[Report a Bug](https://github.com/blankcode-alt/the-chaos-button/issues) 🐛 · [Request a Feature](https://github.com/blankcode-alt/the-chaos-button/issues) 🎁
 
 *If this repository wasted your time productively, consider leaving a star ⭐. The button counts everything else anyway.*
 
@@ -33,6 +35,8 @@ The first five clicks are innocent: a soft purple glow, a polite blip, a mildly 
 
 This project exists because a button is the smallest possible unit of interactivity, and therefore the funniest place to spend an unreasonable amount of engineering. 🔧😅
 
+<img width="1024" height="1024" alt="Gemini_Generated_Image_kp4ylfkp4ylfkp4y" src="https://github.com/user-attachments/assets/bf872be0-6cfc-4e94-80b4-3ccc2bcb79bc" />
+
 ## 🎭 The four phases
 
 The engine counts your clicks and moves through four narrative phases. Each phase re-skins the page, swaps the sound palette, and unlocks new misbehavior. The button itself remembers nothing. Legally. ⚖️
@@ -43,6 +47,8 @@ The engine counts your clicks and moves through four narrative phases. Each phas
 | 2️⃣ Active Resistance | 6–15 | Stop That | 😑 Passive-aggressive | Cracks appear, colors desaturate, the button starts dodging and denying things |
 | 3️⃣ Total Chaos | 16–25 | WHY | 🤬 Unhinged | Red vignette, glitching label, strobe, gravity stops working |
 | 4️⃣ Enlightenment | 26 | Thank You | 🧘 Transcendent | Golden ceremony, four-chord orchestral swell, a thank-you card, then a full reset |
+
+<img width="1008" height="1069" alt="Gemini_Generated_Image_t0tzuot0tzuot0tz" src="https://github.com/user-attachments/assets/489de133-436b-4154-b9f9-9e55cb6c710d" />
 
 ## ✨ Highlights
 
@@ -57,7 +63,7 @@ The engine counts your clicks and moves through four narrative phases. Each phas
 - 🎮 **The Konami code is accepted.** Legally, nothing is unlocked. Emotionally, everything is. 🕹️
 - 🪜 Press ranks from *Bystander* to *Legend of the Lab*. Yes, there is a ladder. No, it leads nowhere. That is the point.
 
-## 🚀 Quick start
+## 🚀 Quick start ---˅  <img width="262" height="40" alt="Screenshot 2026-09-08 at 21 25 23" src="https://github.com/user-attachments/assets/cc03d2b5-23a5-447a-a68c-b23381cec5ea" />
 
 ```bash
 # clone your fork (or the repo, we do not judge 🙃)
