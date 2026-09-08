@@ -171,7 +171,7 @@ export default function GitHubStarButton() {
         />
       </svg>
 
-      <span className="ghx-label">Star</span>
+      <span className="ghx-label">★</span>
 
       {stars === null && !failed && <span className="ghx-count ghx-pending">…</span>}
       {stars !== null && (
