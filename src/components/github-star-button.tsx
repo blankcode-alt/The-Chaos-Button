@@ -8,7 +8,8 @@ const SHIELDS_API =
   'https://img.shields.io/github/stars/blankcode-alt/the-chaos-button.json'
 const CACHE_KEY = 'ghx-stars'
 const CACHE_AT_KEY = 'ghx-stars-at'
-const CACHE_TTL = 30 * 60 * 1000 // 30 minutes
+const CACHE_TTL = 5 * 60 * 1000 // the notebook is trusted for at most 5 minutes
+const REFRESH_ON_VISIBLE_AFTER = 60 * 1000 // coming back to the tab re-asks GitHub if the note is older than this
 
 function formatStars(count: number): string {
   if (count >= 1000) {
@@ -29,6 +30,17 @@ function readCachedStars(): number | null {
     /* private browsing may block storage — just fetch fresh */
   }
   return null
+}
+
+function cacheAgeMs(): number | null {
+  try {
+    const cachedAt = sessionStorage.getItem(CACHE_AT_KEY)
+    if (cachedAt === null) return null
+    const at = Number(cachedAt)
+    return Number.isNaN(at) ? null : Date.now() - at
+  } catch {
+    return null
+  }
 }
 
 function writeCachedStars(count: number): void {
@@ -71,6 +83,9 @@ async function fetchStarCount(): Promise<number | null> {
  * Slots into the top-right glass-button row (after #sound-toggle).
  * Asks GitHub for the live star count; falls back to shields.io when
  * the API is rate-limited; shows no number at all if both are shy.
+ * Freshness rules: the notebook is trusted for 5 minutes, and whenever
+ * the visitor arrives (or returns to the tab) with a note older than
+ * one minute, a quiet background re-ask keeps the badge honest.
  * All CSS travels inside the component — zero changes needed elsewhere.
  */
 export default function GitHubStarButton() {
@@ -80,16 +95,29 @@ export default function GitHubStarButton() {
   useEffect(() => {
     let cancelled = false
 
-    // 1) a fresh cache hit resolves immediately (be polite to the API)
+    // shared: quietly re-ask GitHub and update badge + notebook
+    const revalidate = () => {
+      fetchStarCount().then((n) => {
+        if (cancelled || n === null) return
+        setStars(n)
+        setFailed(false)
+        writeCachedStars(n)
+      })
+    }
+
+    const isStale = () => {
+      const age = cacheAgeMs()
+      return age !== null && age >= REFRESH_ON_VISIBLE_AFTER
+    }
+
+    // 1) first paint: serve the notebook instantly (fast, zero waiting)
     const cached = readCachedStars()
-    // 2) otherwise ask GitHub, falling back to the shields.io mirror
     const source: Promise<number | null> =
       cached !== null ? Promise.resolve(cached) : fetchStarCount()
 
     source.then((n) => {
       if (cancelled) return
       if (n === null) {
-        // no number today — the button still stars, just without a badge
         setFailed(true)
         return
       }
@@ -97,8 +125,22 @@ export default function GitHubStarButton() {
       if (cached === null) writeCachedStars(n)
     })
 
+    // 2) stale-while-revalidate: arrived with an old note? re-ask in background
+    //    (covers refreshes — the case where pageshow fires before we can listen)
+    if (isStale()) revalidate()
+
+    // 3) star-and-return: same check whenever the tab becomes visible again
+    //    (visitor comes back from GitHub right after starring)
+    const onVisible = () => {
+      if (document.visibilityState === 'visible' && isStale()) revalidate()
+    }
+    document.addEventListener('visibilitychange', onVisible)
+    window.addEventListener('pageshow', onVisible)
+
     return () => {
       cancelled = true
+      document.removeEventListener('visibilitychange', onVisible)
+      window.removeEventListener('pageshow', onVisible)
     }
   }, [])
 
@@ -135,7 +177,10 @@ export default function GitHubStarButton() {
       {stars !== null && (
         <>
           <span className="ghx-divider" aria-hidden="true" />
-          <span className="ghx-count">{formatStars(stars)}</span>
+          {/* key={stars} replays the pop animation whenever the number changes */}
+          <span key={stars} className="ghx-count">
+            {formatStars(stars)}
+          </span>
         </>
       )}
     </a>
@@ -217,3 +262,5 @@ const GHX_CSS = `
   .ghx-star:hover { transform: none; }
 }
 `
+
+/* END OF FILE - if you can read this line, your paste is complete! */
