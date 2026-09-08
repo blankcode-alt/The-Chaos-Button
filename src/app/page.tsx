@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import './chaos.css'
 import { createChaosEngine } from '@/lib/chaos/engine'
+import GitHubStarButton from '@/components/github-star-button'
 
 export default function Home() {
   useEffect(() => {
@@ -13,6 +14,9 @@ export default function Home() {
 
   return (
     <div id="chaos-root">
+            {/* github star button: the classic "please clap" widget the pros wear */}
+      <GitHubStarButton />
+
       {/* dramatic loading screen (CSS fail-safe: auto-hides at 3s) */}
       <div id="loading-screen" role="status" aria-label="Loading the chaos laboratory">
         <div className="loading-spinner" aria-hidden="true" />
